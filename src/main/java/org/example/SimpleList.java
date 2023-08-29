@@ -132,12 +132,3 @@ public class SimpleList<T> implements SimpleListInterface<T> {
         }
     }
 }
-//    int[] arr2 = Arrays.stream(arr1)
-//            // упаковываем int в Integer
-//            .boxed()
-//            // сортируем
-//            .sorted((x, y) -> y - x)
-//            // распаковываем обратно
-//            .mapToInt(Integer::intValue)
-//            // собираем в массив
-//            .toArray();
