@@ -3,7 +3,6 @@ package org.example;
 import org.example.castomException.CustomException;
 import org.example.impl.SimpleListInterface;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.Random;
@@ -123,8 +122,27 @@ public class SimpleList<T> implements SimpleListInterface<T> {
         SimpleList<T> sortedList = new SimpleList<>();
         sortedList.addAll(this);
 
-        return sortedList.sort(comparator);
+        int size = sortedList.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                T element1 = sortedList.get(j).orElse(null);
+                T element2 = sortedList.get(j + 1).orElse(null);
+                if (element1 != null && element2 != null && comparator.compare(element1, element2) > 0) {
+                    sortedList.swap(j, j + 1);
+                }
+            }
+        }
+
+        return sortedList;
     }
+
+    private void swap(int index1, int index2) {
+        T temp = (T) array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
+
+
 
     private void checkIndex(int index) {
         if (index < 0 || index > size) {
